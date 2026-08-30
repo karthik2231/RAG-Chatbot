@@ -44,10 +44,10 @@ docker compose up --build -d
 
 ```mermaid
 flowchart LR
-    A[📄 Upload PDF] --> B[✂️ Split into Chunks]
-    B --> C[🔍 Vector Search (FAISS)]
-    C --> D[🤖 Local AI (Ollama)]
-    D --> E[💬 Answer with Page Citations]
+    A["📄 Upload PDF"] --> B["✂️ Split into Chunks"]
+    B --> C["🔍 Vector Search (FAISS)"]
+    C --> D["🤖 Local AI (Ollama)"]
+    D --> E["💬 Answer with Citations"]
 ```
 
 1. **Upload**: You upload a PDF document.
@@ -81,14 +81,14 @@ flowchart TD
         Ollama["Ollama Inference Engine<br/>(llama3.2:1b Model)"]
     end
 
-    UI <-->|REST API + JWT| API
+    UI --> API
     API --> Auth
-    API <--> DB
+    API --> DB
     API --> DocEngine
     DocEngine --> Embedder
     Embedder --> VectorStore
-    API <-->|Semantic Search (Top-K Chunks)| VectorStore
-    API <-->|Prompt Context & Completion| Ollama
+    API --> VectorStore
+    API --> Ollama
 ```
 
 ---
